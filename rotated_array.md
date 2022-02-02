@@ -3,3 +3,4 @@ The second one is to calculate big o easily
 
 binary search to achive big o of log n
 and while loop to achive n 
+and space com is o(1)
