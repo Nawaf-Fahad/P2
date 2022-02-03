@@ -1,20 +1,20 @@
 def rearrange_digits(input_list):
-    if len(input_list) <=1:
-        return "there is some issuse with size"
-    if input_list is None:
-        return "you enter nothing"
-
-    sorted_list = merge_sort(input_list)
-    index1 = ''
-    index2 = ''
-    i=0
-    while i < len(input_list):
-        if i % 2 == 0:
-            index1 += str(sorted_list[i])
-        else:
-            index2 += str(sorted_list[i])
-        i+=1;
-    return [int(index1), int(index2)]
+    if input_list is None or len(input_list) == 0:#
+        return -1, -1
+    
+    if len(input_list) == 1 :
+        return input_list[0], 0
+    
+    input_list = merge_sort(input_list)
+    input_list.reverse()
+    num1 = ""
+    num2 = ""
+    for i in range(len(input_list)):
+        if i %2 ==0:
+            num1 +=str(input_list[i])
+        if i %2 ==1:
+            num2 +=str(input_list[i])
+    return int(num1), int(num2)
     
 
 
@@ -23,7 +23,7 @@ def merge_sort(list):
     list_length = len(list)
 
     
-    if list_length == 1:
+    if list_length <= 1:
         return list
 
     
@@ -44,17 +44,16 @@ def merge(left, right):
     
     while i < len(left) and j < len(right):
         
-        if left[i] < right[j]:
+        if left[i] > right[j]:
             
-            output.append(left[i])
-            
-            i += 1
-        else:
             output.append(right[j])
-            j += 1
+            j+=1
+        else:
+            output.append(left[i])
+            i += 1
     
-    output.extend(left[i:])
-    output.extend(right[j:])
+    output+=left[i:]
+    output+=right[j:]
 
     return output
 
@@ -67,5 +66,12 @@ def test_function(test_case):
         print("Fail")
 
 
+test_function([None, [-1, -1]])
 test_function([[1, 2, 3, 4, 5], [542, 31]])
-test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
+test_function([[], [-1, -1]])
+
+test_function([[0, 0], [0, 0]])
+test_function([[0, 0, 1, 1, 5, 5], [510, 510]])
+test_function([[9,8,7,6,5,4,3,2,1,0,0], [975310, 86420]])
+
+

@@ -1,17 +1,19 @@
 def sort_012(input_list):
-   arr_zero=[]
-   arr_one=[]
-   arr_two=[]
-   final_arr=[]
-   for i in input_list:
-       if i ==0:
-           arr_zero.append(0)
-       elif i==1:
-            arr_one.append(1)
-       else:
-            arr_two.append(2)
-   final_arr=arr_zero+arr_one+arr_two
-   return final_arr
+    lo = 0
+    hi = len(input_list) - 1
+    mid = 0
+    while mid <= hi:
+        if input_list[mid] == 0:
+            input_list[lo], input_list[mid] = input_list[mid], input_list[lo]
+            lo = lo + 1
+            mid = mid + 1
+        elif input_list[mid] == 1:
+            mid = mid + 1
+        else:
+            input_list[mid], input_list[hi] = input_list[hi], input_list[mid]
+            hi = hi - 1
+    return input_list
+
         
 
 
@@ -25,5 +27,7 @@ def test_function(test_case):
         print("Fail")
 
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
-test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
+test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1,0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+test_function([2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0])
+test_function([])
